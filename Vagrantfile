@@ -10,7 +10,7 @@ net_ip = "192.168.40"
 Vagrant.configure(2) do |config|
 
   config.vm.define "saltmaster" do |satlmaster|
-    satlmaster.vm.box = "#{ubuntu14_box}"
+    satlmaster.vm.box = "#{ubuntu16_box}"
     satlmaster.vm.network "private_network", ip: "#{net_ip}.11"
     satlmaster.vm.hostname = "saltmaster.#{DOMAIN}"
     satlmaster.vm.provision :shell, path: "#{common_bootstrap}"
@@ -27,7 +27,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define "ubuntu01" do |ubuntu|
-    ubuntu.vm.box = "#{ubuntu14_box}"
+    ubuntu.vm.box = "#{ubuntu16_box}"
     ubuntu.vm.network "private_network", ip: "#{net_ip}.12"
     ubuntu.vm.hostname = "ubuntu01.#{DOMAIN}"
     ubuntu.vm.provision :shell, path: "#{common_bootstrap}"
