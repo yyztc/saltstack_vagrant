@@ -9,21 +9,21 @@ net_ip = "192.168.50"
 
 Vagrant.configure(2) do |config|
 
-  config.vm.define "saltmaster" do |satlmaster|
-    satlmaster.vm.box = "#{ubuntu16_box}"
-    satlmaster.vm.network "private_network", ip: "#{net_ip}.11"
-    satlmaster.vm.hostname = "saltmaster.#{DOMAIN}"
-    satlmaster.vm.provision :shell, path: "#{common_bootstrap}"
-    satlmaster.vm.provision "shell" do |s|
+  config.vm.define "saltmaster" do |saltmaster|
+    saltmaster.vm.box = "#{ubuntu16_box}"
+    saltmaster.vm.network "private_network", ip: "#{net_ip}.11"
+    saltmaster.vm.hostname = "saltmaster.#{DOMAIN}"
+    saltmaster.vm.provision :shell, path: "#{common_bootstrap}"
+    saltmaster.vm.provision "shell" do |s|
 	s.path = "#{salt_install}"
 	s.args = "salt-master"
     end
     # ubuntu don't need vbguest
-    satlmaster.vbguest.auto_update = false
-    satlmaster.vbguest.no_install = true
+    #saltmaster.vbguest.auto_update = false
+    #saltmaster.vbguest.no_install = true
 
-    satlmaster.vm.synced_folder "saltstack/salt/", "/srv/salt"
-    satlmaster.vm.synced_folder "saltstack/pillar/", "/srv/pillar"
+    saltmaster.vm.synced_folder "saltstack/salt/", "/srv/salt"
+    saltmaster.vm.synced_folder "saltstack/pillar/", "/srv/pillar"
   end
 
   config.vm.define "ubuntu01" do |ubuntu|
