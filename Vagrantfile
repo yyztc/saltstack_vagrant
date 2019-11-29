@@ -1,11 +1,11 @@
 DOMAIN="example.com"
-ubuntu14_box="ubuntu/trusty64"
 ubuntu16_box="ubuntu/xenial64"
+ubuntu18_box="ubuntu/bionic64"
 centos6_box="centos/6"
 centos7_box="centos/7"
 common_bootstrap="bootstrap.sh"
 salt_install="salt_install.sh"
-net_ip = "192.168.40"
+net_ip = "192.168.50"
 
 Vagrant.configure(2) do |config|
 
